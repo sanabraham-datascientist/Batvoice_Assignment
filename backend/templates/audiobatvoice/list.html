@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for object in object_list %}
+<div>
+    <p>Title ==> {{object.title}} </p>
+    <p>Customer ==> {{object.customer}} </p>
+    <p>Status ==> {{object.status}} </p>
+    <p>Length ==> {{object.length}} </p>
+    <p>Anatator==> {{object.anatator}} </p>
+</div>
+<br>
+    
+{% endfor %}
+{% endblock %}

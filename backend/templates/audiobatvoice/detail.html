@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+    <p>Title ==> {{object.title}} 
+    {% if object.get_edit_url %}
+        <small><a href="{{object.get_edit_url }}">Edit</a></small>
+    {% endif %}
+    <p>Customer ==> {{object.customer}} </p>
+    <p>Status ==> {{object.status}} </p>
+    <p>Length ==> {{object.length}} </p>
+    <p>Anatator==> {{object.anatator}} </p>
+    <hr>
+    {% for segment in get_audio_segment_children %}
+     <p>{{segment.length}}</p>
+     <p>{{segment.audio_file}}</p>
+    {% endfor %}
+</div>
+<br>
+
+{% endblock %}

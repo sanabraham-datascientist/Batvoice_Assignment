@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save, post_save
@@ -15,9 +16,10 @@ from .validators import (
 
 
 class Audio(models.Model):
+    #uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(null=False, max_length=50)
     length = models.IntegerField(blank=True, null=True)
-    audio_file = models.FileField(upload_to="static/media", null=False)
+    audio_file = models.FileField(upload_to="uploads/", null=False)
     customer = models.CharField(null=False, max_length=30)
     status = models.CharField(default="new", max_length=20)
     anatator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -34,7 +36,7 @@ class Audio(models.Model):
         return reverse("audios:update", kwargs={"id": self.id})
 
     def get_audio_segment_children(self):
-        return self.object.audiosegment_set.all()
+        return self.audiosegment_set.all()
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -49,8 +51,9 @@ pre_save.connect(audio_pre_save, sender=Audio)
 
 
 class AudioSegment(models.Model):
+    # uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     audio = models.ForeignKey(Audio, on_delete=models.CASCADE)
-    audio_file = models.FileField(upload_to="static/media", null=False)
+    audio_file = models.FileField(upload_to="uploads/", null=False)
     length = models.IntegerField(blank=True, null=True)
     transcript = models.TextField(
         null=True,
@@ -76,9 +79,3 @@ def audio_segment_pre_save(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(audio_segment_pre_save, sender=AudioSegment)
-
-
-# def audio_segment_post_save(sender, instance, created, *args, **kwargs):
-#     if instance.length < 8 or instance.length > 20:
-#         instance.audio_file = None
-# post_save.connect(audio_pre_save, sender=Audio)

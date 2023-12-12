@@ -59,21 +59,19 @@
         <td
           class="px-6 py-4 text-sm leading-5 text-gray-500 border-b border-gray-200 whitespace-nowrap"
         >
-          {{ audio.anatator }}
+          {{ audio.user_name }}
         </td>
 
         <td
           class="px-6 py-4 text-sm font-medium leading-5 text-right border-b border-gray-200 whitespace-nowrap"
         >
-          <a href="#" class="text-sky-600 hover:text-indigo-900"
-            >Show Details</a
-          >
+        <router-link v-bind:to="audio.get_absolute_url" class="text-sky-600 hover:text-indigo-900">Show Details</router-link>
         </td>
 
         <td
           class="px-6 py-4 text-sm font-medium leading-5 text-right border-b border-gray-200 whitespace-nowrap"
         >
-          <a href="#" class="text-sky-600 hover:text-indigo-900">Edit</a>
+        <router-link v-bind:to="audio.get_absolute_url" class="text-sky-600 hover:text-indigo-900">Edit</router-link>
         </td>
       </tr>
     </tbody>
@@ -97,7 +95,6 @@ export default {
       axios
         .get("/api")
         .then((response) => {
-          console.log("data", response.data);
           this.audioList = response.data;
         })
         .catch((error) => {
@@ -108,8 +105,4 @@ export default {
 };
 </script>
 
-// data() { // return { // audioList :[] // } // }, // mounted() { //
-this.getAllAudios() // }, // methods: { // getAllAudios() { // axios //
-.get('/api/') // .then(response => { // console.log(response.data) //
-this.audioList = response.data // }) // .catch(error => { // console.log(error)
-// }) // } // } // }; //
+

@@ -102,10 +102,10 @@ Rule5=>characters ,;: should be end of text of followed by one space
 # Rule1 : all charcters have to be in the character set.
 def check_character_set(transcript_text):
     i = 0
-    while i <= len(transcript_text):
+    while i < len(transcript_text):
         if transcript_text[i] not in character_set:
             raise ValidationError("characters not in the character set")
-            return False
+            i+=1
     return True
 
 

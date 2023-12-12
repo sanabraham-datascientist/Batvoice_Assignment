@@ -1,10 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AudioDetailView from '../views/AudioDetail.vue'
+import AudioUpdateView from '../views/AudioUpdate.vue'
 
 const routes = [
+  
   {
-    path: '/api/',
+    path: '/api',
     name: 'home',
     component: HomeView
   },
@@ -13,14 +15,11 @@ const routes = [
     name: 'audiodetail',
     component: AudioDetailView
   },
-  // {
-  //   path: '/about',
-  //   name: 'about',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  // }
+  {
+    path: '/api/:id/edit',
+    name: 'audioupdate',
+    component: AudioUpdateView
+  }
 ]
 
 const router = createRouter({

@@ -1,4 +1,5 @@
 from django.db import models
+
 import uuid
 from django.utils.text import slugify
 from django.contrib.auth.models import User
@@ -16,7 +17,7 @@ from .validators import (
 
 
 class Audio(models.Model):
-    #uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    # uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(null=False, max_length=50)
     length = models.IntegerField(blank=True, null=True)
     audio_file = models.FileField(upload_to="uploads/", null=False)
@@ -25,6 +26,10 @@ class Audio(models.Model):
     anatator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     timestamp = models.DateField(auto_now_add=True)
     description = models.TextField(null=True, blank=True)
+
+    @property
+    def user_name(self):
+        return User.objects.get(id=self.anatator.id).username
 
     def __str__(self):
         return self.title
@@ -58,6 +63,7 @@ class AudioSegment(models.Model):
     transcript = models.TextField(
         null=True,
         blank=True,
+        default = " ",
         validators=[
             check_character_set,
             check_space,

@@ -5,6 +5,5 @@ app_name = "audios"
 urlpatterns = [
     path("", audio_list, name="list"),
     path("<int:id>/", audio_detail, name="detail"),
-    # path("mylist", AudioUserListView.as_view(), name="mylist"),
-    # path("<int:id>/edit/", AudioDetailView.as_view(), name="update"),
+    path("<int:id>/edit/", audio_detail, name="update"),
 ]

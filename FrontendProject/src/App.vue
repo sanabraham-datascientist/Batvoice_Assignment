@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+// import MessageHeader from "@/components/MessageHeader.vue";
 
 const isOpen = ref(false);
 </script>
@@ -10,7 +11,7 @@ const isOpen = ref(false);
       :class="isOpen ? 'w-40' : 'w-60'"
       class="flex flex-col h-screen p-3 duration-300 bg-gray-800 shadow"
     >
-      <div class="space-y-15 ">
+      <div class="space-y-15">
         <div class="flex items-center justify-between">
           <img
             src="https://assets-global.website-files.com/5e942b3d36c30b8400e8c95c/5e99635fd0f2eb60f10a9eba_logo_batvoice_horiz_blue02a9f5_large-p-200.png"
@@ -42,11 +43,11 @@ const isOpen = ref(false);
             </svg>
           </button>
         </div>
-        
+
         <div class="flex-1">
           <ul class="pt-10 pb-10 space-y-1 text-sm">
             <li class="rounded-sm">
-              <a href="#" class="flex items-center p-2 space-x-3 rounded-md">
+              <router-link to="/api" class="flex items-center p-2 space-x-3 rounded-md">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -63,7 +64,7 @@ const isOpen = ref(false);
                 </svg>
 
                 <span class="text-gray-100">Home</span>
-              </a>
+              </router-link>
             </li>
             <li class="rounded-sm">
               <a href="#" class="flex items-center p-2 space-x-3 rounded-md">
@@ -85,7 +86,7 @@ const isOpen = ref(false);
                 <span class="text-gray-100">My Work</span>
               </a>
             </li>
-         
+
             <li class="rounded-sm">
               <a href="#" class="flex items-center p-2 space-x-3 rounded-md">
                 <svg
@@ -111,29 +112,10 @@ const isOpen = ref(false);
       </div>
     </div>
     <div class="container mx-auto mt-12">
-      <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
-        <div class="w-full px-4 py-5 bg-white rounded-lg shadow">
-          <div class="text-sm font-medium text-gray-500 truncate">
-            
-          </div>
-          <div class="mt-1 text-3xl font-semibold text-gray-900"></div>
-        </div>
-        <div class="w-full px-4 py-5 bg-white rounded-lg shadow">
-          <div class="text-sm font-medium text-gray-500 truncate">
-            
-          </div>
-          <div class="mt-1 text-3xl font-semibold text-gray-900"></div>
-        </div>
-        <div class="w-full px-4 py-5 bg-white rounded-lg shadow">
-          <div class="text-sm font-medium text-gray-500 truncate">
-            
-          </div>
-          <div class="mt-1 text-3xl font-semibold text-gray-900"></div>
-        </div>
-      </div>
-      <RouterView/>
+      <!-- <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
+       <MessageHeader/>
+      </div> -->
+      <RouterView />
     </div>
-     
   </div>
- 
 </template>

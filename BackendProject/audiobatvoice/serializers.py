@@ -3,8 +3,6 @@ from .models import Audio, AudioSegment
 
 
 class AudioSerializer(serializers.ModelSerializer):
-    # get_audio_segment_children = AudioSegmentSerializer()
-
     class Meta:
         model = Audio
         fields = (
@@ -16,20 +14,22 @@ class AudioSerializer(serializers.ModelSerializer):
             "status",
             "anatator",
             "description",
-            # "get_absolute_url",
-            # "get_edit_url",
-            # "get_audio_segment_children",
+            "get_absolute_url",
+            "get_edit_url",
+            "user_name",
         )
 
 
-class AudioSegmentSerializer(serializers.ModelSerializer):
-    audio = AudioSerializer(read_only=True)
+class AudioSerializerPut(serializers.ModelSerializer):
+    model = Audio
+    fields = ("id", "audio_file", "transcript", "status")
 
+
+class AudioSegmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = AudioSegment
         fields = (
             "id",
-            "audio",
             "audio_file",
             "length",
             "transcript",

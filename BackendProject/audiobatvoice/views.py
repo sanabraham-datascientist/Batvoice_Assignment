@@ -61,9 +61,7 @@ def audio_detail(request, id):
 
     if request.method == "GET":
         serializer = AudioSerializer(audio)
-        return Response(
-            {"audio": serializer.data, "audio_segments": audio_segments_children}
-        )
+        return Response(serializer.data)
 
     elif request.method == "PUT":
         serializer = AudioSerializerPut(audio, data=request.data)

@@ -1,12 +1,15 @@
 <template>
-
-  <div class="player">
-    
     <audio controls>
-      <source src="http://shaury.com/luka-chuppi-duniyaa.mp3" type="audio/mpeg">
-      <source src="http://shaury.com/luka-chuppi-duniyaa.mp3" type="audio/wav">
+      <source :src="src" type="audio/mpeg" />
+      <source :src="src" type="audio/wav" />
     </audio>
-  </div>
-
 </template>
-	
+
+<script>
+export default {
+  name: "AudioPlayer",
+  props: {
+    src: String,
+  },
+};
+</script>

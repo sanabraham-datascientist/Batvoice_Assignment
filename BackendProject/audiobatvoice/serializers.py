@@ -17,6 +17,8 @@ class AudioSerializer(serializers.ModelSerializer):
             "get_absolute_url",
             "get_edit_url",
             "user_name",
+            #"updated_at_formatted",
+            "timestamp",
         )
 
 

@@ -1,27 +1,17 @@
 <template>
   <div class="container mx-auto mt-12">
-    <div class="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
-      <div class="w-full px-4 py-5">
-        <div class="text-sm font-medium text-gray-500 truncate">
-          <AudioPlayer />
-          <div class="w-full px-4 py-5 bg-white rounded-lg shadow">
+         <Transcriptions/> 
+  </div> 
   
-        
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </template>
 
 <script>
-import AudioPlayer from "@/components/AudioPlayer.vue";
-// import axios from "axios";
+import Transcriptions from "@/components/Transcriptions.vue";
+import axios from "axios";
 export default {
   name: "AudioUpdateView",
   components: {
-    AudioPlayer,
+    Transcriptions,
   },
 };
 //   data() {

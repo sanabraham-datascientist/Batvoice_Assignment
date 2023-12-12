@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils.timesince import timesince
 import uuid
 from django.utils.text import slugify
 from django.contrib.auth.models import User
@@ -25,11 +25,16 @@ class Audio(models.Model):
     status = models.CharField(default="new", max_length=20)
     anatator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     timestamp = models.DateField(auto_now_add=True)
+    #updated_at = models.DateField(blank=True,null=True)
     description = models.TextField(null=True, blank=True)
 
     @property
     def user_name(self):
         return User.objects.get(id=self.anatator.id).username
+
+    # @property
+    # def updated_at_formatted(self):
+    #     return timesince(self.updated_at)
 
     def __str__(self):
         return self.title
@@ -63,7 +68,7 @@ class AudioSegment(models.Model):
     transcript = models.TextField(
         null=True,
         blank=True,
-        default = " ",
+        default=" ",
         validators=[
             check_character_set,
             check_space,

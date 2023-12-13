@@ -65,13 +65,21 @@
         <td
           class="px-6 py-4 text-sm font-medium leading-5 text-right border-b border-gray-200 whitespace-nowrap"
         >
-        <router-link v-bind:to="audio.get_absolute_url" class="text-sky-600 hover:text-indigo-900">Show Details</router-link>
+          <router-link
+            v-bind:to="audio.get_absolute_url"
+            class="text-sky-600 hover:text-indigo-900"
+            >Show Details</router-link
+          >
         </td>
 
         <td
           class="px-6 py-4 text-sm font-medium leading-5 text-right border-b border-gray-200 whitespace-nowrap"
         >
-        <router-link v-bind:to="audio.get_edit_url" class="text-sky-600 hover:text-indigo-900">Edit</router-link>
+          <router-link
+            v-bind:to="audio.get_edit_url"
+            class="text-sky-600 hover:text-indigo-900"
+            >Edit</router-link
+          >
         </td>
       </tr>
     </tbody>
@@ -104,5 +112,3 @@ export default {
   },
 };
 </script>
-
-

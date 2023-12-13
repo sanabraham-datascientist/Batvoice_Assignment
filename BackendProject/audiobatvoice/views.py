@@ -61,10 +61,11 @@ def audio_detail(request, id):
 
     if request.method == "GET":
         serializer = AudioSerializer(audio)
-        return Response(serializer.data)
+        return JsonResponse(
+                {"audio": serializer.data, "audio_segments": audio_segments_children})
 
-    elif request.method == "PUT":
-        serializer = AudioSerializerPut(audio, data=request.data)
+    if request.method == "PUT":
+        serializer = AudioSerializer(audio, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(

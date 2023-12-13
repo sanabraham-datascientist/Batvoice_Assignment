@@ -39,6 +39,7 @@
                 </span>
 
                 <input
+                  name = {{ segment.transcript }}
                   type="text"
                   class="w-full px-12 py-2 border-transparent rounded-md appearance-none focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
                 />
@@ -69,5 +70,6 @@ export default {
   components: {
     AudioPlayer,
   },
+  
 };
 </script>

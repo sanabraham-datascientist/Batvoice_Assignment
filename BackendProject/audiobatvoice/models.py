@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.timesince import timesince
 import uuid
 from django.utils.text import slugify
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.db.models.signals import pre_save, post_save
 from django.core.exceptions import ValidationError
 from django.conf import settings
@@ -15,6 +15,8 @@ from .validators import (
     check_the_end_text,
 )
 
+User = get_user_model()
+
 
 class Audio(models.Model):
     # uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -23,9 +25,9 @@ class Audio(models.Model):
     audio_file = models.FileField(upload_to="uploads/", null=False)
     customer = models.CharField(null=False, max_length=30)
     status = models.CharField(default="new", max_length=20)
-    anatator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    anatator = models.ForeignKey(User, on_delete=models.CASCADE)
     timestamp = models.DateField(auto_now_add=True)
-    #updated_at = models.DateField(blank=True,null=True)
+    # updated_at = models.DateField(blank=True,null=True)
     description = models.TextField(null=True, blank=True)
 
     @property
@@ -85,7 +87,6 @@ def audio_segment_pre_save(sender, instance, *args, **kwargs):
     if instance.length is None:
         instance.length = mutagen.File(instance.audio_file).info.length
     if instance.length < 8 or instance.length > 20:
-        instance = None
         raise ValidationError("The segment length has to be between 8 and 20 ")
 
 

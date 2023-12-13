@@ -101,11 +101,9 @@ Rule5=>characters ,;: should be end of text of followed by one space
 
 # Rule1 : all charcters have to be in the character set.
 def check_character_set(transcript_text):
-    i = 0
-    while i < len(transcript_text):
-        if transcript_text[i] not in character_set:
-            raise ValidationError("characters not in the character set")
-            i+=1
+    for character in transcript_text:
+        if character not in character_set:
+            raise ValidationError(f"{character} is a not valid")
     return True
 
 
@@ -123,7 +121,7 @@ def check_space(transcript_text):
 def check_capital_letters(transcript_text):
     words = transcript_text.split(" ")
     for word in words:
-        if not (word == word.title() or word == word.upper()):
+        if not (word == word.title() or word == word.upper() or word == word.lower()):
             raise ValidationError(
                 "Capital letters are allowed only as a first word letter or if all the letters in the word are upper case"
             )
